@@ -1,16 +1,12 @@
 # decollab
 
-Welcome to your new decollab project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+Version control software like git and code repository storage websites like GitHub and BitBucket have dominated the way we write and collaborate on code. However, we’ve always seen the two as almost separate entities; moreover,  these platforms are not easy to grasp, especially for amateur coders that need a space for simpler code collaboration. DECOLLAB solves these two issues by offering a singular, streamlined platform for coders to easily work on projects together quickly and effectively.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+DECOLLAB is entirely web-hosted, which means that users can write code and manage their repositories all on one website. DECOLLAB features a simple, delta-based version control software that allows users to save their changes and view revision histories of their code. And of course, the most important part about DECOLLAB is that it is built on the Internet Computer blockchain, whose decentralized nature gives users full control over their repositories. 
 
-To learn more before you start working with decollab, see the following documentation available online:
+On the Internet Computer, DECOLLAB is a two-canister, backend-frontend system. The frontend canister hosts the website and user interface that was demoed. Based on user actions, this canister makes calls to the backend canister, written in Motoko, which stores and manages the data associated with the repositories.
 
-- [Quick Start](https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html)
-- [SDK Developer Tools](https://sdk.dfinity.org/docs/developers-guide/sdk-guide.html)
-- [Motoko Programming Language Guide](https://sdk.dfinity.org/docs/language-guide/motoko.html)
-- [Motoko Language Quick Reference](https://sdk.dfinity.org/docs/language-guide/language-manual.html)
-- [JavaScript API Reference](https://erxue-5aaaa-aaaab-qaagq-cai.raw.ic0.app)
+Firstly, exposing the full features of Git to a decentralized, web-hosted code editing and repository management program would allow more experienced coders to take advantage of the benefits that DECOLLAB provides. While the primary goal of DECOLLAB is its simplicity, appeal to a wider group of the programming industry would greatly foster the growth of this software. Furthermore, I plan to have DECOLLAB integrate further with the capabilities of the Internet Computer. One such feature is Internet Identity, which would provide users with secure authentication and more organized control over their repositories.
 
 If you want to start working on your project right away, you might want to try the following commands:
 
