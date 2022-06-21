@@ -1,22 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>decollab</title>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>hello</title>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.css' rel='stylesheet'>
+    <!-- The link above loaded the core css -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.js'></script>
+    <!-- The script above loaded the core editor -->
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/javascript/javascript.js'></script>
+    <!-- The script above loaded the highlighting for JavaScript -->
     <base href="/" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="icon" href="favicon.ico" />
-    <link type="text/css" rel="stylesheet" href="main.css" />
-  </head>
+    <!--<link type="text/css" rel="stylesheet" href="main.css" /> -->
+    <script defer src="index.js"></script>
+  </head> 
   <body>
-    <main>
-      <img src="logo.png" alt="DFINITY logo" />
-      <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting"></section>
-    </main>
+    
+    <div class = "d-flex align-items-center justify-content-center vh-100" id="home-div">
+      <div class="container-fluid text-center" id="home">
+          <div class="row py-3">
+              <h1 style="font-size: 60px">DECOLLAB</h1>
+              <h4>Decentralized Version Control, hosted completely on the web and built on the Internet Computer.</h4> 
+          </div>
+          <div class="row py-3">
+              <div class = "col-sm-12 text-center">
+                  <button class="btn btn-primary mx-3 px-4" data-bs-toggle="modal" data-bs-target="#createRepoModal" style = "font-size: 30px">Create</button>
+                  <button class="btn btn-primary mx-3 px-4" data-bs-toggle="modal" data-bs-target="#findRepoModal" style = "font-size: 30px">Find</button>
+              </div>
+          </div>
+      </div>
+      
+      <div class="modal fade" id="createRepoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Repository Name</label>
+                            <input type="email" class="form-control" id="createRepoName" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="createRepoPass">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="create">Create</button>
+                </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="modal fade" id="findRepoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Find</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Repository Name</label>
+                          <input type="email" class="form-control" id="findRepoName" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="findRepoPass">
+                          <label class="form-label" id="findWrongPassword"></label>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="find">Find</button>
+              </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+    <div class="container-fluid p-3" id="repo">
+      <div class="row mx-0 my-3">
+        <div class="col-10">
+          <h1 id ="displayRepoName">Repo Name</h1>
+        </div>
+        <div class="col-2">
+          <button data-bs-toggle="modal" data-bs-target="#deleteRepoModal" class="btn btn-danger float-end mx-2" style = "font-size: 16px">Delete</button>
+          <button data-bs-toggle="modal" data-bs-target="#homeModal" class="btn btn-primary float-end mx-2" style = "font-size: 16px">Home</button>
+        </div>
+      </div>
+    
+      <div class="row mx-0 my-4">
+        <div class="col-6" id="first-editor">
+         
+          <h3 id ="editorTitle"></h3>
+          <textarea id="codeEditor" rows="50"></textarea>
+          
+
+        </div>
+        <div id="second-editor">
+          <h3 id ="viewerTitle"></h3>
+          <textarea id="codeViewer" rows="50"></textarea>
+          
+
+        </div>
+
+        <div class="col-2">
+          <h3>Files</h3>
+            <ul class = "list-group" id="fileList" style = "max-height: 600px; overflow:scroll">
+            </ul>
+        </div>
+        <div class="col-4">
+          <h3>Commits</h3>        
+          <ul class = "list-group" id="commitList" style = "max-height: 600px; overflow:scroll">
+          </ul>
+        </div>
+      </div>
+
+      <div class="row mx-0 my-4">
+        <div class="col-2">
+          <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#commitModal" style = "font-size: 16px" id="commit">Commit Changes</button>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-2">
+          <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#newFileModal" style = "font-size: 16px">New File</button>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary px-4" style = "font-size: 16px" id="return">Return to Current</button>
+        </div>
+      </div>
+
+      <div class="modal fade" id="commitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Commit</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="mb-3">
+                          <ul class = "list-group" id="commitChanges">
+                          </ul>
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Commit Message</label>
+                          <input type="email" class="form-control" id="commitMsg" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="commitPass">
+                        <label class="form-label" id="commitWrongPassword"></label>
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="push">Commit</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="newFileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">New File</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Name</label>
+                          <input type="email" class="form-control" id="filename" aria-describedby="emailHelp">
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="newFile">Add</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="deleteRepoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Delete this repository?</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="deleteRepoPassword">
+                          <label class="form-label" id="deleteWrongPassword"></label>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="deleteRepo">Delete</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="homeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Save changes?</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="goHome">Cancel</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="sendToCommit">Save</button>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3 text-center align-middle p-3">
+                        <div class="spinner-border mx-3" role="status">
+                        </div>
+                        <label for="exampleInputEmail1" class="form-label" style="font-size: 30px">Loading...</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        var editorContainer = document.getElementById("codeEditor");
+        var editor = CodeMirror.fromTextArea(editorContainer, {
+            styleActiveLine: true,
+            autoRefresh: true,
+            lineNumbers: true,
+            matchBrackets: true
+        });
+
+        editor.setSize(null, 600);
+
+        var editorContainer2 = document.getElementById("codeViewer");
+        var editor2 = CodeMirror.fromTextArea(editorContainer2, {
+            styleActiveLine: true,
+            autoRefresh: true,
+            lineNumbers: true,
+            matchBrackets: true
+        });
+        editor2.setSize(null, 600);
+    </script>
+
+    <style>
+      .CodeMirror { 
+        outline: 2px solid black
+      }
+
+      .list-group-item {
+        border: 2px solid black
+      }
+    </style>
+
   </body>
 </html>
+
