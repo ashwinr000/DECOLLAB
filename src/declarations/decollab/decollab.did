@@ -1,0 +1,20 @@
+type Commit = 
+ record {
+   changes: vec Change;
+   name: text;
+ };
+type Change = 
+ record {
+   content: text;
+   file: text;
+   kind: text;
+   length: nat;
+   position: nat;
+ };
+service : {
+  commit: (text, text, text, vec Change) -> (text);
+  create: (text, text) -> ();
+  delete: (text, text) -> (text);
+  findRepo: (text, text) -> (vec Commit);
+  lookup: (text) -> (vec Commit);
+}
