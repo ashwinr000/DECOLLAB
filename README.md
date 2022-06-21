@@ -1,4 +1,4 @@
-# decollab
+# DECOLLAB
 
 Version control software like git and code repository storage websites like GitHub and BitBucket have dominated the way we write and collaborate on code. However, we’ve always seen the two as almost separate entities; moreover,  these platforms are not easy to grasp, especially for amateur coders that need a space for simpler code collaboration. DECOLLAB solves these two issues by offering a singular, streamlined platform for coders to easily work on projects together quickly and effectively.
 
@@ -6,9 +6,9 @@ DECOLLAB is entirely web-hosted, which means that users can write code and manag
 
 On the Internet Computer, DECOLLAB is a two-canister, backend-frontend system. The frontend canister hosts the website and user interface that was demoed. Based on user actions, this canister makes calls to the backend canister, written in Motoko, which stores and manages the data associated with the repositories.
 
-Firstly, exposing the full features of Git to a decentralized, web-hosted code editing and repository management program would allow more experienced coders to take advantage of the benefits that DECOLLAB provides. While the primary goal of DECOLLAB is its simplicity, appeal to a wider group of the programming industry would greatly foster the growth of this software. Furthermore, I plan to have DECOLLAB integrate further with the capabilities of the Internet Computer. One such feature is Internet Identity, which would provide users with secure authentication and more organized control over their repositories.
 
-If you want to start working on your project right away, you might want to try the following commands:
+# Working on the project
+If you want to start working on this project right away, you might want to try the following commands:
 
 ```bash
 cd decollab/
